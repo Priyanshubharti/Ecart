@@ -1,0 +1,12 @@
+{
+  "name": "ecart",
+  "version": "1.0.0",
+  "description": "eCommerce application built with MERN stack.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "Priyanshu",
+  "license": "MIT"
+}
