@@ -4,18 +4,24 @@ import ReactDOM from 'react-dom/client';
 import {createBrowserRouter, createRoutesFromElements,
 Route, RouterProvider
 } from 'react-router-dom'
+import {Provider} from 'react-redux';
+
 import '../src/assests/styles/bootstrap.custom.css'
 import '../src/assests/styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import HomeScreens from './screens/HomeScreens';
-import ProductScreens from './screens/ProductScreens';
+import HomeScreen from './screens/HomeScreen';
+import CartScreen from './screens/CartScreen';
+import ProductScreen from './screens/ProductScreen';
+import store from './store';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>}>
-      <Route index={true} path='/' element = {<HomeScreens/>} />
-      <Route  path='/product/:id' element = {<ProductScreens/>} />
+      <Route index={true} path='/' element = {<HomeScreen/>} />
+      <Route  path='/product/:id' element = {<ProductScreen/>} />
+      <Route path='/cart' element={<CartScreen />} />
     </Route>
   )
 )
@@ -23,7 +29,9 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
    <RouterProvider router={router} />
+   </Provider>
   </React.StrictMode>
 );
 
