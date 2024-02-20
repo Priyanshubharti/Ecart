@@ -41,6 +41,7 @@ const CartScreen = () => {
             Your cart is empty <Link to='/'>Go Back</Link>
           </Message>
         ) : (
+          
           <ListGroup variant='flush'>
             {cartItems.map((item) => (
               <ListGroup.Item key={item._id}>
@@ -78,12 +79,20 @@ const CartScreen = () => {
                   </Col>
                 </Row>
               </ListGroup.Item>
-            ))}
+              
+            ))
+            
+            }
           </ListGroup>
+            
         )}
+           <Link className='btn btn-light my-3' to='/'>
+        Add more
+      </Link>
       </Col>
       <Col md={4}>
         <Card>
+          
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>
