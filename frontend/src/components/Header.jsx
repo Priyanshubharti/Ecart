@@ -3,10 +3,12 @@ import ecart from "../assests/ecart.png"
 import {LinkContainer} from "react-router-bootstrap"
 import { Navbar, Nav, Container, Badge, NavDropdown } from 'react-bootstrap';
 import React from 'react'
+import SearchBox from './SearchBox';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
+import { resetCart } from '../slices/cartSlice';
 
 const Header = () => {
     const { cartItems } = useSelector((state) => state.cart);
@@ -22,6 +24,9 @@ const Header = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
+       // NOTE: here we need to reset cart state for when a user logs out so the next
+      // user doesn't inherit the previous users cart and shipping
+      dispatch(resetCart());
       navigate('/login');
     } catch (err) {
       console.error(err);
@@ -40,6 +45,7 @@ const Header = () => {
                 <Navbar.Toggle aria-controls='basic-navbar-nav' />
                 <Navbar.Collapse id = 'basic-navbar-nav'>
                     <Nav className='ms-auto'>
+                    <SearchBox />
                     <LinkContainer to={'/cart'}>
                         <Nav.Link >
                             <FaShoppingCart/> Cart

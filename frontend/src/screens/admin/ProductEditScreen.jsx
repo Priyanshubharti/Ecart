@@ -49,7 +49,7 @@ const ProductEditScreen = () => {
         category,
         description,
         countInStock,
-      });
+      }).unwrap(); // NOTE: here we need to unwrap the Promise to catch any rejection in our catch block
       toast.success('product updated successfully');
       refetch();
       navigate('/admin/productlist');
@@ -93,7 +93,7 @@ const ProductEditScreen = () => {
         {isLoading ? (
           <Loader />
         ) : error ? (
-          <Message variant='danger'>{error}</Message>
+          <Message variant='danger'>{error.data.message}</Message>
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId='name'>
