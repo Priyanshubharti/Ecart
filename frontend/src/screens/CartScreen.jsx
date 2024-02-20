@@ -86,9 +86,10 @@ const CartScreen = () => {
           </ListGroup>
             
         )}
-           <Link className='btn btn-light my-3' to='/'>
+        {cartItems.length === 0 ? ( null) : ( <Link className='btn btn-light my-3' to='/'>
         Add more
-      </Link>
+      </Link> )}
+           
       </Col>
       <Col md={4}>
         <Card>
